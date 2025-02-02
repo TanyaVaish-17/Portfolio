@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin: 20px;
+        }
+
+        .registration-form {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .image-container {
+            flex: 1;
+            text-align: center;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Book Stop</h1>
+        <div class="nav">
+            <a href="./1_index.html">Home</a>
+            <a href="./2_Login.html">Login</a>
+            <a href="./7_Registeration_Form.html">Registration</a>
+            <a href="./3_Catalogue.html">Catalogue</a>
+            <a href="./4_CartPage.html">Cart</a>
+        </div>
+    </div>
+    <div class="info">
+        <form class="registration-form" onsubmit="return validateForm()">
+            <h2>Registration Form</h2>
+    
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="email">E-mail ID:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+    
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+    
+            <div class="form-group">
+                <label>Sex:</label>
+                <label><input type="radio" name="sex" value="male" required> Male</label>
+                <label><input type="radio" name="sex" value="female" required> Female</label>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <select id="day" name="day" required>
+                    <option value="">Day</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <!-- Add more days as needed -->
+                </select>
+                <select id="month" name="month" required>
+                    <option value="">Month</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                    <!-- Add more months as needed -->
+                </select>
+                <select id="year" name="year" required>
+                    <option value="">Year</option>
+                    <option value="2000">2000</option>
+                    <option value="2001">2001</option>
+                    <!-- Add more years as needed -->
+                </select>
+            </div>
+    
+            <div class="form-group">
+                <label>Languages Known:</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="language" value="english"> English</label>
+                    <label><input type="checkbox" name="language" value="telugu"> Telugu</label>
+                    <label><input type="checkbox" name="language" value="hindi"> Hindi</label>
+                    <label><input type="checkbox" name="language" value="tamil"> Tamil</label>
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+    
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <div class="logo1">
+            <img src="./assets/logo.webp" width="500px" height="450px">
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Book Stop | All rights reserved.</p>
+    </div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById("name").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            // Name validation
+            const nameRegex = /^[A-Za-z]+$/; // Only alphabets allowed
+            if (!nameRegex.test(name)) {
+                alert("Name should contain only alphabets.");
+                return false;
+            }
+            if (name.length < 6) {
+                alert("Name should be at least 6 characters long.");
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                alert("Password should be at least 6 characters long.");
+                return false;
+            }
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Please enter a valid email address (e.g., name@domain.com).");
+                return false;
+            }
+
+            // Phone number validation
+            const phoneRegex = /^\d{10}$/;
+            if (!phoneRegex.test(phone)) {
+                alert("Phone number should contain exactly 10 digits.");
+                return false;
+            }
+
+            return true; // Allow form submission
+        }
+    </script>
+</body>
+</html>

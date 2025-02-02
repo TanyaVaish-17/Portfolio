@@ -1,0 +1,349 @@
+/*Home Page*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color:or;
+    text-decoration: none;
+}
+
+/* Top Frame Styling */
+.top-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:#f4a261;
+    color: white;
+    padding: 10px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo1{
+    align-items: center;
+    margin-right: 40px;
+}
+
+.nav-links a {
+    margin: 0 15px;
+    font-size: 16px;
+    color: #f4f4f4;
+}
+
+/* Left Frame Styling */
+.links {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.links a {
+    display: block;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Right Frame Styling */
+.content {
+    margin: 20px;
+}
+
+.content h1 {
+    font-size: 32px;
+    color: #333;
+}
+
+.content p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    background-color:#f4a261;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Layout Styles for Frames */
+
+.main-content {
+    display: flex;
+    flex: 1;
+}
+
+.right-frame {
+    flex: 1;
+    padding: 20px;
+}
+
+/* login page*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4a261;
+    padding: 10px 20px;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.content {
+    flex: 2;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-left: 10px;
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.buttons .submit {
+    background-color: #2a9d8f;
+    color: white;
+}
+
+.buttons .reset {
+    background-color: #e63946;
+    color: white;
+}
+
+/* Catalogue Page */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4a261;
+    padding: 10px 20px;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+}
+
+.sidebar {
+    flex: 1;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.content {
+    flex: 3;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-left: 10px;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.content table th, .content table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.content table th {
+    background-color: #f4a261;
+    color: white;
+}
+
+.add-to-cart {
+    display: inline-block;
+    background-color: #2a9d8f;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+}
+
+.book-image {
+    width: 50px;
+    height: auto;
+}
+
+/* Cart Page */
+.cart-page {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.cart-page th, .cart-page td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.cart-page th {
+    background-color: #f9f9f9;
+}
+
+.header span {
+    font-size: 18px;
+}
+
+/* Registeration form */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f4a261;
+    padding: 10px 20px;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+.registration-form {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+.registration-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-group input[type="radio"] {
+    width: auto;
+}
+.form-group .checkbox-group {
+    display: flex;
+    gap: 10px;
+}
+.form-group .checkbox-group label {
+    display: flex;
+    align-items: center;
+}
+.form-group .checkbox-group input {
+    margin-right: 5px;
+}
+.form-group textarea {
+    resize: none;
+}
+.form-group button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.form-group button:hover {
+    background-color: #0056b3;
+}

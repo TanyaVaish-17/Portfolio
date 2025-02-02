@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Innovations Quiz</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* Container for the main content */
+        .quiz-container {
+            flex: 1;
+            width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Question text styling */
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        /* Options styling */
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .option:hover {
+            background-color: #45a049;
+        }
+        /* Score display styling */
+        #score {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        /* Timer display styling */
+        #timer {
+            font-size: 18px;
+            color: #d32f2f;
+        }
+        /* Hidden elements */
+        .hidden {
+            display: none;
+        }
+        /* Footer styling */
+        footer {
+
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header><div class="quiz-container">
+        <div id="question-container">
+            <div id="question"></div>
+            <div class="options">
+                <div class="option" onclick="answer(0)"></div>
+                <div class="option" onclick="answer(1)"></div>
+                <div class="option" onclick="answer(2)"></div>
+                <div class="option" onclick="answer(3)"></div>
+            </div>
+        </div>
+        <div id="score" class="hidden">Score: 0</div>
+        <div id="timer" class="hidden"></div>
+        <div id="result" class="hidden"></div>
+    </div></header>
+
+    <footer>
+        <p>&copy; 2024 Recycling Innovations - Tanya Vaish. All rights reserved.</p>
+        <p>
+            <a href="https://twitter.com" target="_blank" style="color: white;">Twitter</a> | 
+            <a href="https://facebook.com" target="_blank" style="color: white;">Facebook</a> | 
+            <a href="https://linkedin.com" target="_blank" style="color: white;">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the main purpose of recycling?",
+                options: ["Reduce waste", "Increase pollution", "Increase resource usage", "None of the above"],
+                correctAnswer: 0
+            },
+            {
+                question: "Which of the following is a recyclable material?",
+                options: ["Glass", "Food waste", "Plastic bags", "Electronics"],
+                correctAnswer: 0
+            },
+            {
+                question: "What innovation has been used to recycle plastic waste into clothing?",
+                options: ["Plastic-to-fuel", "Plastic-to-3D printing", "Recycled polyester", "Plastic-to-road materials"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which country is a leader in waste-to-energy technology?",
+                options: ["Germany", "Canada", "Japan", "India"],
+                correctAnswer: 2
+            },
+            {
+                question: "Which of the following is an example of a circular economy innovation?",
+                options: ["Plastic recycling", "Using more single-use plastics", "Creating landfills", "Burning waste for energy"],
+                correctAnswer: 0
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 10; // 10 seconds to answer each question
+
+        function startGame() {
+            currentQuestionIndex = 0;
+            score = 0;
+            document.getElementById("score").classList.add("hidden");
+            document.getElementById("timer").classList.add("hidden");
+            document.getElementById("result").classList.add("hidden");
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById("question").textContent = question.question;
+            const options = document.querySelectorAll(".option");
+            options.forEach((option, index) => {
+                option.textContent = question.options[index];
+            });
+            startTimer();
+        }
+
+        function startTimer() {
+            timeLeft = 10;
+            document.getElementById("timer").textContent = "Time left: " + timeLeft + "s";
+            document.getElementById("timer").classList.remove("hidden");
+
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById("timer").textContent = "Time left: " + timeLeft + "s";
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function answer(selectedOption) {
+            clearInterval(timer);
+            const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+            if (selectedOption === correctAnswer) {
+                score++;
+            }
+            nextQuestion();
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById("question-container").classList.add("hidden");
+            document.getElementById("score").textContent = "Final Score: " + score;
+            document.getElementById("score").classList.remove("hidden");
+            document.getElementById("result").textContent = "Game Over!";
+            document.getElementById("result").classList.remove("hidden");
+        }
+
+        startGame(); // Start the game when the page loads
+    </script>
+</body>
+</html>

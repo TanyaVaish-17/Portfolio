@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Sorting Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .game-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 20px;
+        }
+        .bin {
+            width: 150px;
+            height: 200px;
+            border: 2px dashed #00a859;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 10px;
+            position: relative;
+        }
+        .bin img {
+            width: 100px;
+            height: auto;
+        }
+        .bin-label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .item {
+            width: 80px;
+            height: auto;
+            margin: 10px;
+            cursor: grab;
+        }
+        #score, #timer {
+            font-size: 20px;
+            margin: 20px;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #00a859;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #007f4f;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Recycling Sorting Game</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="examples.html">Innovative Examples</a></li>
+                <li><a href="benefits.html">Benefits</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <p>Drag items to the correct recycling bin!</p>
+    </header>
+
+    <main>
+        <div id="score">Score: 0</div>
+        <div id="timer">Time left: <span id="time-left">60</span> seconds</div>
+
+        <div class="game-container">
+            <!-- Recycling Bins -->
+            <div class="bin" id="plastic-bin" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">
+                <img src="./assets/plasticBin.jpeg" alt="Plastic Bin">
+                <div class="bin-label">Plastic</div>
+            </div>
+            <div class="bin" id="paper-bin" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">
+                <img src="./assets/paperBin.jpeg" alt="Paper Bin">
+                <div class="bin-label">Paper</div>
+            </div>
+            <div class="bin" id="glass-bin" ondrop="drop(event)" ondragover="allowDrop(event)" ondragleave="removeHover(event)">
+                <img src="./assets/glassBin.jpeg" alt="Glass Bin">
+                <div class="bin-label">Glass</div>
+            </div>
+        </div>
+
+        <!-- Items to Drag -->
+        <div>
+            <img src="./assets/plasticBottle.jpeg" alt="Plastic Bottle" class="item" draggable="true" id="plastic-item" ondragstart="drag(event)">
+            <img src="./assets/newspaper.jpeg" alt="Newspaper" class="item" draggable="true" id="paper-item" ondragstart="drag(event)">
+            <img src="./assets/glassBottle.jpeg" alt="Glass Bottle" class="item" draggable="true" id="glass-item" ondragstart="drag(event)">
+        </div>
+
+        <p id="result"></p>
+        <button id="reset-btn" onclick="resetGame()">Reset Game</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Recycling Innovations - Tanya Vaish. All rights reserved.</p>
+        <p>
+            <a href="https://twitter.com" target="_blank">Twitter</a> | 
+            <a href="https://facebook.com" target="_blank">Facebook</a> | 
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+
+    <script>
+        let score = 0;
+        let sortedItems = 0;
+        const totalItems = 3;  // Number of items in the game
+        let timer;
+        let timeLeft = 60;
+
+        function allowDrop(event) {
+            event.preventDefault();
+            const targetBin = event.target.closest('.bin');
+            if (targetBin) {
+                targetBin.style.borderColor = "#ff9900"; // Highlight bin when dragging over
+            }
+        }
+
+        function removeHover(event) {
+            const targetBin = event.target.closest('.bin');
+            if (targetBin) {
+                targetBin.style.borderColor = "#00a859"; // Reset border color
+            }
+        }
+
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const itemId = event.dataTransfer.getData("text");
+            const targetBin = event.target.closest('.bin');
+            if (!targetBin) return; // If drop target is not valid
+
+            const binId = targetBin.id;
+            targetBin.style.borderColor = "#00a859"; // Reset border color after drop
+
+            if (
+                (itemId === "plastic-item" && binId === "plastic-bin") ||
+                (itemId === "paper-item" && binId === "paper-bin") ||
+                (itemId === "glass-item" && binId === "glass-bin")
+            ) {
+                if (!targetBin.contains(document.getElementById(itemId))) {
+                    targetBin.appendChild(document.getElementById(itemId));
+                    sortedItems++;
+                    updateScore(1);
+                    document.getElementById("result").textContent = "Correct! Keep going!";
+                    document.getElementById("result").style.color = "green";
+
+                    // Check if all items are sorted
+                    if (sortedItems === totalItems) {
+                        document.getElementById("result").textContent = "Congratulations! You've sorted all items!";
+                        document.getElementById("result").style.color = "blue";
+                        clearInterval(timer); // Stop the timer
+                    }
+                }
+            } else {
+                document.getElementById("result").textContent = "Oops! That's the wrong bin.";
+                document.getElementById("result").style.color = "red";
+            }
+        }
+
+        function updateScore(points) {
+            score += points;
+            document.getElementById("score").textContent = "Score: " + score;
+        }
+
+        function startTimer() {
+            timer = setInterval(function () {
+                timeLeft--;
+                document.getElementById("time-left").textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    document.getElementById("result").textContent = "Time's up! Game Over!";
+                    document.getElementById("result").style.color = "red";
+                }
+            }, 1000);
+        }
+
+        function resetGame() {
+            score = 0;
+            sortedItems = 0;
+            timeLeft = 60;
+            document.getElementById("score").textContent = "Score: 0";
+            document.getElementById("time-left").textContent = "60";
+            document.getElementById("result").textContent = "";
+            clearInterval(timer);
+            startTimer(); // Restart the timer
+
+            // Reset all bins
+            document.getElementById("plastic-bin").innerHTML = '<img src="./assets/plasticBin.jpeg" alt="Plastic Bin"><div class="bin-label">Plastic</div>';
+            document.getElementById("paper-bin").innerHTML = '<img src="./assets/paperBin.jpeg" alt="Paper Bin"><div class="bin-label">Paper</div>';
+            document.getElementById("glass-bin").innerHTML = '<img src="./assets/glassBin.jpeg" alt="Glass Bin"><div class="bin-label">Glass</div>';
+            // Reattach items to be draggable
+            document.getElementById("plastic-item").draggable = true;
+            document.getElementById("paper-item").draggable = true;
+            document.getElementById("glass-item").draggable = true;
+        }
+
+        startTimer(); // Start the timer when the game loads
+    </script>
+</body>
+</html>
